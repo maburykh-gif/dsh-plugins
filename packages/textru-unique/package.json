@@ -1,0 +1,26 @@
+{
+  "name": "@dsh-plugins/textru-unique",
+  "version": "1.0.0",
+  "description": "Text.ru uniqueness checks for DeepSeek Harness: submits text through the text.ru API, reports the score, sources and non-unique fragments",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["dsh-plugin", "textru", "uniqueness", "seo", "antiplagiat"],
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

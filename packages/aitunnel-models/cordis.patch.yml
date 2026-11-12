@@ -1,0 +1,135 @@
+# AITunnel объявляет один шлюз (https://api.aitunnel.ru/v1) пятью маршрутами,
+# чтобы в селекторе моделей было видно назначение каждого раздела.
+#
+# Ключ не хранится здесь: apiKeyEnv ссылается на AITUNNEL_API_KEY в хранилище
+# учётных данных профиля ($DSH_HOME/.credentials.yaml).
+#
+# Важно: слой бандла применяется раньше пользовательского патча профиля.
+# Если в cordis.patch.yml уже объявлен llm-pi-ai со своими providers, побеждает
+# пользовательский конфиг — этот бандл ничего не перезапишет.
+- id: llm-pi-ai
+  name: "@deepseek-ai/dsh-llm-pi-ai"
+  config:
+    providers:
+      aitunnel:
+        displayName: API для текстов
+        api: openai-completions
+        baseURL: https://api.aitunnel.ru/v1/
+        apiKeyEnv: AITUNNEL_API_KEY
+        models:
+          - id: claude-sonnet-5.5
+            name: Claude Sonnet 5.5
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: claude-sonnet-5
+            name: Claude Sonnet 5
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: claude-sonnet-4.6
+            name: Claude Sonnet 4.6
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: claude-sonnet-4.5
+            name: Claude Sonnet 4.5
+            contextWindow: 1000000
+            maxTokens: 64000
+            input: [text, image]
+          - id: claude-opus-5.5
+            name: Claude Opus 5.5
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: gpt-6.1-terra
+            name: GPT-6.1 Terra
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: gemini-3.8-flash
+            name: Gemini 3.8 Flash
+            contextWindow: 1000000
+            maxTokens: 65536
+            input: [text, image]
+          - id: deepseek-v4-pro
+            name: DeepSeek V4 Pro
+            contextWindow: 256000
+            maxTokens: 64000
+            input: [text]
+
+      aitunnel-architect:
+        displayName: API для архитектора
+        api: openai-completions
+        baseURL: https://api.aitunnel.ru/v1/
+        apiKeyEnv: AITUNNEL_API_KEY
+        models:
+          - id: gpt-6.1-sol-pro
+            name: GPT-6.1 Sol Pro
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: claude-opus-5.5
+            name: Claude Opus 5.5
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: gemini-4-argon
+            name: Gemini 4 Argon
+            contextWindow: 1000000
+            maxTokens: 65536
+            input: [text, image]
+
+      aitunnel-design:
+        displayName: API для дизайна
+        api: openai-completions
+        baseURL: https://api.aitunnel.ru/v1/
+        apiKeyEnv: AITUNNEL_API_KEY
+        models:
+          - id: claude-opus-5.5
+            name: Claude Opus 5.5
+            contextWindow: 1000000
+            maxTokens: 128000
+            input: [text, image]
+          - id: gpt-6.1-sol
+            name: GPT-6.1 Sol
+            contextWindow: 400000
+            maxTokens: 128000
+            input: [text, image]
+          - id: gemini-3.1-pro-preview
+            name: Gemini 3.1 Pro
+            contextWindow: 1000000
+            maxTokens: 65536
+            input: [text, image]
+
+      aitunnel-image:
+        displayName: API для изображений
+        api: openai-completions
+        baseURL: https://api.aitunnel.ru/v1/
+        apiKeyEnv: AITUNNEL_API_KEY
+        models:
+          - id: flux.2-pro
+            name: FLUX 2 Pro
+            input: [text]
+          - id: gpt-image-2.5-sunburst
+            name: GPT-Image 2.5 Sunburst
+            input: [text]
+          - id: seedream-5-0-pro
+            name: Seedream 5 Pro
+            input: [text]
+
+      aitunnel-video:
+        displayName: API для видео
+        api: openai-completions
+        baseURL: https://api.aitunnel.ru/v1/
+        apiKeyEnv: AITUNNEL_API_KEY
+        models:
+          - id: veo-3.1-fast
+            name: Veo 3.1 Fast
+            input: [text]
+          - id: veo-3.1
+            name: Veo 3.1
+            input: [text]
+          - id: kling-v3.0-pro
+            name: Kling 3.0 Pro
+            input: [text]

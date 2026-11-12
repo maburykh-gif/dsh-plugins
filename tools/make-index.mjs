@@ -1,0 +1,122 @@
+#!/usr/bin/env node
+// make-index.mjs — собирает market/index.json (формат 1) для двух плагинов.
+//
+//   node tools/make-index.mjs --repo https://gitlab.com/group/repo --commit <40-hex>
+//
+// Без --commit берёт HEAD текущего репозитория, без --repo оставляет плейсхолдер.
+
+import { execFileSync } from 'node:child_process'
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+
+const args = process.argv.slice(2)
+function arg(name, fallback) {
+  const index = args.indexOf(`--${name}`)
+  return index >= 0 ? args[index + 1] : fallback
+}
+
+const root = join(import.meta.dirname, '..')
+const repo = arg('repo', 'https://gitlab.com/YOUR-GROUP/dsh-plugins')
+let commit = arg('commit', '')
+if (!commit) {
+  try {
+    commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim()
+  } catch {
+    console.error('Не удалось прочитать HEAD: укажите --commit вручную.')
+    process.exit(1)
+  }
+}
+if (!/^[0-9a-f]{40}$/.test(commit)) {
+  console.error(`Коммит должен быть 40 hex-символов, получено: ${commit}`)
+  process.exit(1)
+}
+
+const now = Math.floor(Date.now() / 1000)
+
+const index = {
+  format: 1,
+  title: {
+    en: 'DSH plugins: AITunnel and text.ru',
+    ru: 'Плагины DSH: AITunnel и text.ru',
+  },
+  description: {
+    en: 'Two bundles for DeepSeek Harness: AITunnel model routes and text.ru uniqueness checks.',
+    ru: 'Два бандла для DeepSeek Harness: маршруты моделей AITunnel и проверка уникальности через text.ru.',
+  },
+  metadata: {
+    categories: {
+      ai: { title: { en: 'AI and models', ru: 'ИИ и модели' } },
+      seo: { title: { en: 'SEO and content', ru: 'SEO и контент' } },
+    },
+    labels: {
+      'needs-api-key': { title: { en: 'Needs an API key', ru: 'Нужен ключ API' } },
+      russian: { title: { en: 'Russian-language', ru: 'Для русского языка' } },
+    },
+    sortKeys: {},
+  },
+  plugins: [
+    {
+      name: '@dsh-plugins/aitunnel-models',
+      title: {
+        en: 'AITunnel model routes',
+        ru: 'Модели AITunnel',
+      },
+      description: {
+        en: "Adds AITunnel's OpenAI-compatible gateway as five model sections: text, architecture, design, images and video.",
+        ru: 'Подключает шлюз AITunnel пятью разделами моделей: тексты, архитектура, дизайн, изображения и видео.',
+      },
+      author: 'DSH Plugins contributors',
+      homepage: repo,
+      repository: { url: repo, directory: 'packages/aitunnel-models' },
+      metadata: {
+        category: 'ai',
+        keywords: ['aitunnel', 'llm', 'models', 'openai-compatible', 'providers'],
+        labels: ['needs-api-key'],
+        sortKeys: {},
+      },
+      versions: [
+        {
+          version: '1.0.0',
+          publishTimestamp: now,
+          source: { type: 'git', url: repo, commit, path: 'packages/aitunnel-models' },
+          engines: {},
+        },
+      ],
+    },
+    {
+      name: '@dsh-plugins/textru-unique',
+      title: {
+        en: 'Text.ru uniqueness',
+        ru: 'Проверка уникальности text.ru',
+      },
+      description: {
+        en: 'Checks text uniqueness through the text.ru API and returns the score, matching sources and the fragments that need a rewrite.',
+        ru: 'Проверяет уникальность через API text.ru и возвращает процент, источники и фрагменты, которые нужно переписать.',
+      },
+      author: 'DSH Plugins contributors',
+      homepage: repo,
+      repository: { url: repo, directory: 'packages/textru-unique' },
+      metadata: {
+        category: 'seo',
+        keywords: ['textru', 'uniqueness', 'antiplagiat', 'seo', 'copywriting'],
+        labels: ['needs-api-key', 'russian'],
+        sortKeys: {},
+      },
+      versions: [
+        {
+          version: '1.0.0',
+          publishTimestamp: now,
+          source: { type: 'git', url: repo, commit, path: 'packages/textru-unique' },
+          engines: {},
+        },
+      ],
+    },
+  ],
+}
+
+const out = join(root, 'market', 'index.json')
+mkdirSync(dirname(out), { recursive: true })
+writeFileSync(out, `${JSON.stringify(index, null, 2)}\n`, 'utf8')
+console.log(`index: ${out}`)
+console.log(`repo:  ${repo}`)
+console.log(`commit:${commit}`)

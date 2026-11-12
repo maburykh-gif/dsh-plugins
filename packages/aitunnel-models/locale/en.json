@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "AITunnel model routes",
+    "description": "Adds AITunnel's OpenAI-compatible gateway as five model sections: text, architecture, design, images and video."
+  }
+}

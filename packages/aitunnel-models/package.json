@@ -1,0 +1,24 @@
+{
+  "name": "@dsh-plugins/aitunnel-models",
+  "version": "1.0.0",
+  "description": "AITunnel model routes for DeepSeek Harness: text, architecture, design, image and video sections in the model picker",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["dsh-plugin", "aitunnel", "llm", "models", "openai-compatible"],
+  "exports": {
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

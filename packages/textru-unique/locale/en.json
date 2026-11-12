@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Text.ru uniqueness",
+    "description": "Checks text uniqueness through the text.ru API and returns the score, matching sources and the fragments that need a rewrite."
+  }
+}

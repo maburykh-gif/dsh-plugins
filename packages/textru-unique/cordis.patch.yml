@@ -1,0 +1,7 @@
+- insert:
+    - id: textru-unique
+      name: '@dsh-plugins/textru-unique'
+      config:
+        apiKeyEnv: TEXT_RU_KEY
+        pollIntervalMs: 4000
+        timeoutMs: 300000
