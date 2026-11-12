@@ -51,9 +51,9 @@
         "ru": "Подключает шлюз AITunnel пятью разделами моделей: тексты, архитектура, дизайн, изображения и видео."
       },
       "author": "DSH Plugins contributors",
-      "homepage": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+      "homepage": "https://github.com/maburykh-gif/dsh-plugins",
       "repository": {
-        "url": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+        "url": "https://github.com/maburykh-gif/dsh-plugins",
         "directory": "packages/aitunnel-models"
       },
       "metadata": {
@@ -73,10 +73,10 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794472681,
+          "publishTimestamp": 1794473696,
           "source": {
             "type": "git",
-            "url": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+            "url": "https://github.com/maburykh-gif/dsh-plugins",
             "commit": "8e5587c4767cbe46c79e2cf3ed8b2dd0baba4757",
             "path": "packages/aitunnel-models"
           },
@@ -95,9 +95,9 @@
         "ru": "Проверяет уникальность через API text.ru и возвращает процент, источники и фрагменты, которые нужно переписать."
       },
       "author": "DSH Plugins contributors",
-      "homepage": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+      "homepage": "https://github.com/maburykh-gif/dsh-plugins",
       "repository": {
-        "url": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+        "url": "https://github.com/maburykh-gif/dsh-plugins",
         "directory": "packages/textru-unique"
       },
       "metadata": {
@@ -118,10 +118,10 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794472681,
+          "publishTimestamp": 1794473696,
           "source": {
             "type": "git",
-            "url": "https://gitlab.com/YOUR-GROUP/dsh-plugins",
+            "url": "https://github.com/maburykh-gif/dsh-plugins",
             "commit": "8e5587c4767cbe46c79e2cf3ed8b2dd0baba4757",
             "path": "packages/textru-unique"
           },
