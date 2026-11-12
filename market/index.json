@@ -1,12 +1,12 @@
 {
   "format": 1,
   "title": {
-    "en": "DSH plugins: AITunnel, text.ru and Russian pause",
-    "ru": "Плагины DSH: AITunnel, text.ru и пауза по-русски"
+    "en": "DSH plugins: AITunnel, text.ru, Russian pause and tool turbo",
+    "ru": "Плагины DSH: AITunnel, text.ru, пауза и turbo"
   },
   "description": {
-    "en": "Three bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, and a Russian-language pause gate for the composer.",
-    "ru": "Три бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru и русская пауза во время ответа агента."
+    "en": "Four bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, a Russian-language pause gate for the composer, and adaptive reasoning effort for tool rounds.",
+    "ru": "Четыре бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru, русская пауза во время ответа агента и адаптивное усилие размышления для раундов инструментов."
   },
   "metadata": {
     "categories": {
@@ -26,6 +26,12 @@
         "title": {
           "en": "Interface and usability",
           "ru": "Интерфейс и удобство"
+        }
+      },
+      "performance": {
+        "title": {
+          "en": "Performance",
+          "ru": "Производительность"
         }
       }
     },
@@ -79,11 +85,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794491666,
+          "publishTimestamp": 1794493525,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
+            "commit": "204d7c0331907af7829491c669e7a0fa602e6642",
             "path": "packages/aitunnel-models"
           },
           "engines": {}
@@ -124,11 +130,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794491666,
+          "publishTimestamp": 1794493525,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
+            "commit": "204d7c0331907af7829491c669e7a0fa602e6642",
             "path": "packages/textru-unique"
           },
           "engines": {}
@@ -170,12 +176,53 @@
       "versions": [
         {
           "version": "0.1.8-ru.1",
-          "publishTimestamp": 1794491666,
+          "publishTimestamp": 1794493525,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
+            "commit": "204d7c0331907af7829491c669e7a0fa602e6642",
             "path": "packages/pause-ru"
+          },
+          "engines": {}
+        }
+      ]
+    },
+    {
+      "name": "@dsh-plugins/tool-turbo",
+      "title": {
+        "en": "Adaptive reasoning effort",
+        "ru": "Адаптивное усилие размышления"
+      },
+      "description": {
+        "en": "Lowers the reasoning effort of cheap tool rounds and raises it for heavy ones, so tool-driven work finishes faster. Port of dsh-tool-turbo to DSH 0.2.2 (MIT).",
+        "ru": "Понижает усилие размышления на дешёвых раундах инструментов и повышает на тяжёлых, чтобы работа с инструментами шла быстрее. Порт dsh-tool-turbo на DSH 0.2.2 (MIT)."
+      },
+      "author": "Electricitysheep (upstream dsh-tool-turbo); порт — maburykh-gif",
+      "homepage": "https://github.com/maburykh-gif/dsh-plugins",
+      "repository": {
+        "url": "https://github.com/maburykh-gif/dsh-plugins",
+        "directory": "packages/tool-turbo"
+      },
+      "metadata": {
+        "category": "performance",
+        "keywords": [
+          "reasoning-effort",
+          "turbo",
+          "latency",
+          "port"
+        ],
+        "labels": [],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "0.2.0",
+          "publishTimestamp": 1794493525,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/maburykh-gif/dsh-plugins",
+            "commit": "204d7c0331907af7829491c669e7a0fa602e6642",
+            "path": "packages/tool-turbo"
           },
           "engines": {}
         }
