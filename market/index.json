@@ -79,11 +79,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794491648,
+          "publishTimestamp": 1794491666,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
+            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
             "path": "packages/aitunnel-models"
           },
           "engines": {}
@@ -124,11 +124,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794491648,
+          "publishTimestamp": 1794491666,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
+            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
             "path": "packages/textru-unique"
           },
           "engines": {}
@@ -170,11 +170,11 @@
       "versions": [
         {
           "version": "0.1.8-ru.1",
-          "publishTimestamp": 1794491648,
+          "publishTimestamp": 1794491666,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
+            "commit": "26deb7ff5673eb8282cc1294d81308cf0ba93512",
             "path": "packages/pause-ru"
           },
           "engines": {}
