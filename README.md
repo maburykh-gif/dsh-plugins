@@ -1,6 +1,6 @@
-# DSH plugins: AITunnel, text.ru и пауза
+# DSH plugins: AITunnel, text.ru, пауза и turbo
 
-Три бандла для [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) в одном
+Четыре бандла для [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) в одном
 репозитории, плюс индекс маркета, чтобы их можно было ставить из интерфейса.
 
 | Пакет | Что делает |
@@ -8,6 +8,7 @@
 | [`packages/aitunnel-models`](packages/aitunnel-models) | шлюз AITunnel пятью разделами моделей: тексты, архитектура, дизайн, изображения, видео |
 | [`packages/textru-unique`](packages/textru-unique) | проверка уникальности через API text.ru: процент, источники, фрагменты под рерайт |
 | [`packages/pause-ru`](packages/pause-ru) | пауза перед следующим шагом агента с русским интерфейсом — форк [dsh-pause](https://github.com/better-er/dsh-pause) (MIT) |
+| [`packages/tool-turbo`](packages/tool-turbo) | адаптивное усилие размышления под раунд инструментов — порт [dsh-tool-turbo](https://github.com/Electricitysheep/dsh-tool-turbo) на 0.2.2 (MIT) |
 
 ## Установка из исходников
 
@@ -56,11 +57,13 @@ https://raw.githubusercontent.com/<user>/<repo>/main/market/index.json
 
 ## Что проверено
 
-- Все три бандла установлены в профиль и активируются без диагностик.
+- Все четыре бандла установлены в профиль и активируются без диагностик.
 - `textru_unique` и `textru_balance` вызывались на живом API: проверка вернула процент,
   источники и фрагменты; баланс — остаток символов.
-- `pause-ru` — русский интерфейс проверен в GUI: кнопка «Пауза» в composer, полоса
-  «Приостановлено · Enter или клик — продолжить».
+- `pause-ru`: хостовая половина активна (`include:pause-ru`, `fiberPhase: active`), бандлы
+  проходят `node --check`; визуальная проверка кнопки в composer — за пользователем.
+- `tool-turbo`: 6/6 юнит-тестов политики; живая сессия пишет `model/selection` и следующий
+  `request/header` уходит с `reasoningEffort: low`, затем плагин возвращает базовый уровень.
 - `market/index.json` проходит `tools/validate-index.mjs` (правила формата 1).
 
 ## Лицензия

@@ -1,0 +1,43 @@
+tool-turbo — порт dsh-tool-turbo на DSH 0.2.2-rc.1
+====================================================
+
+Upstream:   dsh-tool-turbo (https://github.com/Electricitysheep/dsh-tool-turbo),
+            лицензия MIT указана в его package.json, отдельного файла LICENSE нет.
+License:    MIT (см. LICENSE), copyright апстрима сохранён.
+Port:       @dsh-plugins/tool-turbo, поддерживается maburykh-gif.
+
+Что изменено относительно апстрима
+----------------------------------
+1. Точка расширения. Оригинал слушал waterfall `agent/request` и возвращал
+   { ...seed, reasoningEffort }. В 0.2.2 payload этого события — {turn, step,
+   signal} без `agent`, а loop фиксирует выбор модели ДО вызова waterfall.
+   Попытка подменить provider/model/reasoningEffort в`agent/request` теперь
+   бросает ошибку «use agent.model.select() before step preparation».
+
+2. Штатный путь выбора. Порт использует публичный `agent.model.select()`,
+   который пишет durable-событие `model/selection`. Loop захватывает выбор в
+   `preStep()` до запуска `agent/pre-step`, поэтому плагин выбирает усилие
+   в момент, когда зафиксирован assistant-ответ с tool-call блоками, — тогда
+   следующий (инструментальный) шаг получает новое значение.
+
+3. Неизменяемый маршрут. Меняется только `reasoningEffort`; provider и model
+   остаются прежними, как требует хост.
+
+4. Каталог уровней. Уровни берутся из `llm.resolveModelInfo()` в рантайме:
+   нативный DeepSeek предлагает off/low/high/max, pi-ai-маршруты —
+   off/minimal/low/medium/high/xhigh/max. Хардкода low/high/max больше нет.
+
+5. Возврат к выбору пользователя. Когда раунд инструментов закончен
+   (assistant-сообщение без tool-call или `turn/end`), плагин возвращает
+   исходный выбор; смена только effort не добавляет уведомление о смене
+   модели в чат.
+
+6. Телеметрия удалена. Оригинал слушал `agent/tool` (phase start/end), такого
+   события в 0.2.2 нет; замер длительности инструментов убран. Диагностика —
+   одна строка лога на изменение усилия.
+
+7. Сборка. Апстрим ставился как src/index.ts без сборки; порт — чистый ESM
+   (`lib/index.js` + `lib/effort-policy.js`), тесты через `node --test`.
+
+Логика политики (какие данные -> какое решение) перенесена из
+src/effort-decision.ts с сохранением авторства апстрима.

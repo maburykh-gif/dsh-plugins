@@ -1,0 +1,54 @@
+{
+  "name": "@dsh-plugins/tool-turbo",
+  "version": "0.2.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "description": "Подбор reasoning effort под текущий раунд инструментов: дешёвые шаги идут на низком усилии, тяжёлые — на высоком. Порт dsh-tool-turbo на DSH 0.2.2 через штатный agent.model.select()",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "reasoning-effort",
+    "turbo",
+    "latency",
+    "port"
+  ],
+  "license": "MIT",
+  "exports": {
+    ".": "./lib/index.js",
+    "./effort-policy": "./lib/effort-policy.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/effort-policy.js",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "dsh": "^0.2.2-rc.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.0",
+    "@deepseek-ai/dsh": "^0.2.2-rc.1",
+    "@deepseek-ai/schemastery": ">=3.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maburykh-gif/dsh-plugins.git",
+    "directory": "packages/tool-turbo"
+  },
+  "author": "Electricitysheep (upstream dsh-tool-turbo); порт на 0.2.2 — maburykh-gif"
+}

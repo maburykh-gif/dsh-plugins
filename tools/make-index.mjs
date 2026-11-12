@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// make-index.mjs — собирает market/index.json (формат 1) для трёх плагинов.
+// make-index.mjs — собирает market/index.json (формат 1) для четырёх плагинов.
 //
 //   node tools/make-index.mjs --repo https://gitlab.com/group/repo --commit <40-hex>
 //
@@ -36,18 +36,19 @@ const now = Math.floor(Date.now() / 1000)
 const index = {
   format: 1,
   title: {
-    en: 'DSH plugins: AITunnel, text.ru and Russian pause',
-    ru: 'Плагины DSH: AITunnel, text.ru и пауза по-русски',
+    en: 'DSH plugins: AITunnel, text.ru, Russian pause and tool turbo',
+    ru: 'Плагины DSH: AITunnel, text.ru, пауза и turbo',
   },
   description: {
-    en: 'Three bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, and a Russian-language pause gate for the composer.',
-    ru: 'Три бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru и русская пауза во время ответа агента.',
+    en: 'Four bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, a Russian-language pause gate for the composer, and adaptive reasoning effort for tool rounds.',
+    ru: 'Четыре бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru, русская пауза во время ответа агента и адаптивное усилие размышления для раундов инструментов.',
   },
   metadata: {
     categories: {
       ai: { title: { en: 'AI and models', ru: 'ИИ и модели' } },
       seo: { title: { en: 'SEO and content', ru: 'SEO и контент' } },
       ui: { title: { en: 'Interface and usability', ru: 'Интерфейс и удобство' } },
+      performance: { title: { en: 'Performance', ru: 'Производительность' } },
     },
     labels: {
       'needs-api-key': { title: { en: 'Needs an API key', ru: 'Нужен ключ API' } },
@@ -136,6 +137,34 @@ const index = {
           version: '0.1.8-ru.1',
           publishTimestamp: now,
           source: { type: 'git', url: repo, commit, path: 'packages/pause-ru' },
+          engines: {},
+        },
+      ],
+    },
+    {
+      name: '@dsh-plugins/tool-turbo',
+      title: {
+        en: 'Adaptive reasoning effort',
+        ru: 'Адаптивное усилие размышления',
+      },
+      description: {
+        en: 'Lowers the reasoning effort of cheap tool rounds and raises it for heavy ones, so tool-driven work finishes faster. Port of dsh-tool-turbo to DSH 0.2.2 (MIT).',
+        ru: 'Понижает усилие размышления на дешёвых раундах инструментов и повышает на тяжёлых, чтобы работа с инструментами шла быстрее. Порт dsh-tool-turbo на DSH 0.2.2 (MIT).',
+      },
+      author: 'Electricitysheep (upstream dsh-tool-turbo); порт — maburykh-gif',
+      homepage: repo,
+      repository: { url: repo, directory: 'packages/tool-turbo' },
+      metadata: {
+        category: 'performance',
+        keywords: ['reasoning-effort', 'turbo', 'latency', 'port'],
+        labels: [],
+        sortKeys: {},
+      },
+      versions: [
+        {
+          version: '0.2.0',
+          publishTimestamp: now,
+          source: { type: 'git', url: repo, commit, path: 'packages/tool-turbo' },
           engines: {},
         },
       ],
