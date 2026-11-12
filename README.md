@@ -61,7 +61,8 @@ https://raw.githubusercontent.com/<user>/<repo>/main/market/index.json
 - `textru_unique` и `textru_balance` вызывались на живом API: проверка вернула процент,
   источники и фрагменты; баланс — остаток символов.
 - `pause-ru`: хостовая половина активна (`include:pause-ru`, `fiberPhase: active`), бандлы
-  проходят `node --check`; визуальная проверка кнопки в composer — за пользователем.
+  проходят `node --check`; после установки в composer появилась русская кнопка «Пауза»
+  (проверено пользователем).
 - `tool-turbo`: 6/6 юнит-тестов политики; живая сессия пишет `model/selection` и следующий
   `request/header` уходит с `reasoningEffort: low`, затем плагин возвращает базовый уровень.
 - `market/index.json` проходит `tools/validate-index.mjs` (правила формата 1).
