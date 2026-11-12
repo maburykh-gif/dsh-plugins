@@ -1,4 +1,4 @@
-﻿param(
+param(
   [string]$RepoUrl = "",
   [switch]$SkipPush
 )
@@ -46,12 +46,20 @@ if ($RepoUrl -and -not $SkipPush) {
   git remote add origin $RepoUrl
   Write-Host "git: отправляю в $RepoUrl" -ForegroundColor Cyan
   git push -u origin main
+  $base = $RepoUrl.TrimEnd('/')
+  if ($base -match '^https?://github\.com/') {
+    $raw = "https://raw.githubusercontent.com/$($base -replace '^https?://github\.com/', '')/main/market/index.json"
+  } elseif ($base -match '^git@github\.com:') {
+    $raw = "https://raw.githubusercontent.com/$($base -replace '^git@github\.com:', '')/main/market/index.json"
+  } else {
+    $raw = "$base/-/raw/main/market/index.json"
+  }
   Write-Host ''
   Write-Host 'Индекс для DSH:' -ForegroundColor Cyan
-  Write-Host "  $($RepoUrl.TrimEnd('/'))/-/raw/main/market/index.json"
+  Write-Host "  $raw"
 } elseif ($RepoUrl) {
   Write-Host 'Готово локально. Отправка пропущена (-SkipPush).' -ForegroundColor Yellow
 } else {
   Write-Host 'Репозиторий готов, но URL не указан: индекс ссылается на плейсхолдер.' -ForegroundColor Yellow
-  Write-Host 'Повторите с -RepoUrl https://gitlab.com/<group>/<repo>' -ForegroundColor Yellow
+  Write-Host 'Повторите с -RepoUrl https://github.com/<user>/<repo>' -ForegroundColor Yellow
 }
