@@ -1,12 +1,12 @@
 {
   "format": 1,
   "title": {
-    "en": "DSH plugins: AITunnel and text.ru",
-    "ru": "Плагины DSH: AITunnel и text.ru"
+    "en": "DSH plugins: AITunnel, text.ru and Russian pause",
+    "ru": "Плагины DSH: AITunnel, text.ru и пауза по-русски"
   },
   "description": {
-    "en": "Two bundles for DeepSeek Harness: AITunnel model routes and text.ru uniqueness checks.",
-    "ru": "Два бандла для DeepSeek Harness: маршруты моделей AITunnel и проверка уникальности через text.ru."
+    "en": "Three bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, and a Russian-language pause gate for the composer.",
+    "ru": "Три бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru и русская пауза во время ответа агента."
   },
   "metadata": {
     "categories": {
@@ -20,6 +20,12 @@
         "title": {
           "en": "SEO and content",
           "ru": "SEO и контент"
+        }
+      },
+      "ui": {
+        "title": {
+          "en": "Interface and usability",
+          "ru": "Интерфейс и удобство"
         }
       }
     },
@@ -73,11 +79,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794473696,
+          "publishTimestamp": 1794491648,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "8e5587c4767cbe46c79e2cf3ed8b2dd0baba4757",
+            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
             "path": "packages/aitunnel-models"
           },
           "engines": {}
@@ -118,12 +124,58 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1794473696,
+          "publishTimestamp": 1794491648,
           "source": {
             "type": "git",
             "url": "https://github.com/maburykh-gif/dsh-plugins",
-            "commit": "8e5587c4767cbe46c79e2cf3ed8b2dd0baba4757",
+            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
             "path": "packages/textru-unique"
+          },
+          "engines": {}
+        }
+      ]
+    },
+    {
+      "name": "@dsh-plugins/pause-ru",
+      "title": {
+        "en": "Pause gate, Russian UI",
+        "ru": "Пауза с русским интерфейсом"
+      },
+      "description": {
+        "en": "Pauses the agent before the next model request so you can type a steering note or just press Enter; all labels and errors are in Russian. Fork of dsh-pause (MIT).",
+        "ru": "Останавливает агента перед следующим запросом к модели, чтобы можно было дописать реплику или просто нажать Enter; все надписи и ошибки по-русски. Форк dsh-pause (MIT)."
+      },
+      "author": "maburykh-gif (fork of better-er/dsh-pause)",
+      "homepage": "https://github.com/maburykh-gif/dsh-plugins",
+      "repository": {
+        "url": "https://github.com/maburykh-gif/dsh-plugins",
+        "directory": "packages/pause-ru"
+      },
+      "metadata": {
+        "category": "ui",
+        "keywords": [
+          "pause",
+          "steer",
+          "composer",
+          "gate",
+          "russian",
+          "localization",
+          "fork"
+        ],
+        "labels": [
+          "russian"
+        ],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "0.1.8-ru.1",
+          "publishTimestamp": 1794491648,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/maburykh-gif/dsh-plugins",
+            "commit": "55f518eb904ffa30ba5a7478ef9d84c989bf42d4",
+            "path": "packages/pause-ru"
           },
           "engines": {}
         }

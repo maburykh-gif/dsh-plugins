@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// make-index.mjs — собирает market/index.json (формат 1) для двух плагинов.
+// make-index.mjs — собирает market/index.json (формат 1) для трёх плагинов.
 //
 //   node tools/make-index.mjs --repo https://gitlab.com/group/repo --commit <40-hex>
 //
@@ -36,17 +36,18 @@ const now = Math.floor(Date.now() / 1000)
 const index = {
   format: 1,
   title: {
-    en: 'DSH plugins: AITunnel and text.ru',
-    ru: 'Плагины DSH: AITunnel и text.ru',
+    en: 'DSH plugins: AITunnel, text.ru and Russian pause',
+    ru: 'Плагины DSH: AITunnel, text.ru и пауза по-русски',
   },
   description: {
-    en: 'Two bundles for DeepSeek Harness: AITunnel model routes and text.ru uniqueness checks.',
-    ru: 'Два бандла для DeepSeek Harness: маршруты моделей AITunnel и проверка уникальности через text.ru.',
+    en: 'Three bundles for DeepSeek Harness: AITunnel model routes, text.ru uniqueness checks, and a Russian-language pause gate for the composer.',
+    ru: 'Три бандла для DeepSeek Harness: маршруты моделей AITunnel, проверка уникальности через text.ru и русская пауза во время ответа агента.',
   },
   metadata: {
     categories: {
       ai: { title: { en: 'AI and models', ru: 'ИИ и модели' } },
       seo: { title: { en: 'SEO and content', ru: 'SEO и контент' } },
+      ui: { title: { en: 'Interface and usability', ru: 'Интерфейс и удобство' } },
     },
     labels: {
       'needs-api-key': { title: { en: 'Needs an API key', ru: 'Нужен ключ API' } },
@@ -107,6 +108,34 @@ const index = {
           version: '1.0.0',
           publishTimestamp: now,
           source: { type: 'git', url: repo, commit, path: 'packages/textru-unique' },
+          engines: {},
+        },
+      ],
+    },
+    {
+      name: '@dsh-plugins/pause-ru',
+      title: {
+        en: 'Pause gate, Russian UI',
+        ru: 'Пауза с русским интерфейсом',
+      },
+      description: {
+        en: 'Pauses the agent before the next model request so you can type a steering note or just press Enter; all labels and errors are in Russian. Fork of dsh-pause (MIT).',
+        ru: 'Останавливает агента перед следующим запросом к модели, чтобы можно было дописать реплику или просто нажать Enter; все надписи и ошибки по-русски. Форк dsh-pause (MIT).',
+      },
+      author: 'maburykh-gif (fork of better-er/dsh-pause)',
+      homepage: repo,
+      repository: { url: repo, directory: 'packages/pause-ru' },
+      metadata: {
+        category: 'ui',
+        keywords: ['pause', 'steer', 'composer', 'gate', 'russian', 'localization', 'fork'],
+        labels: ['russian'],
+        sortKeys: {},
+      },
+      versions: [
+        {
+          version: '0.1.8-ru.1',
+          publishTimestamp: now,
+          source: { type: 'git', url: repo, commit, path: 'packages/pause-ru' },
           engines: {},
         },
       ],

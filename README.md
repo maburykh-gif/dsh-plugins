@@ -1,12 +1,13 @@
-# DSH plugins: AITunnel и text.ru
+# DSH plugins: AITunnel, text.ru и пауза
 
-Два бандла для [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) в одном
+Три бандла для [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) в одном
 репозитории, плюс индекс маркета, чтобы их можно было ставить из интерфейса.
 
 | Пакет | Что делает |
 |---|---|
 | [`packages/aitunnel-models`](packages/aitunnel-models) | шлюз AITunnel пятью разделами моделей: тексты, архитектура, дизайн, изображения, видео |
 | [`packages/textru-unique`](packages/textru-unique) | проверка уникальности через API text.ru: процент, источники, фрагменты под рерайт |
+| [`packages/pause-ru`](packages/pause-ru) | пауза перед следующим шагом агента с русским интерфейсом — форк [dsh-pause](https://github.com/better-er/dsh-pause) (MIT) |
 
 ## Установка из исходников
 
@@ -55,11 +56,14 @@ https://raw.githubusercontent.com/<user>/<repo>/main/market/index.json
 
 ## Что проверено
 
-- Оба бандла установлены в профиль и активируются без диагностик.
+- Все три бандла установлены в профиль и активируются без диагностик.
 - `textru_unique` и `textru_balance` вызывались на живом API: проверка вернула процент,
   источники и фрагменты; баланс — остаток символов.
+- `pause-ru` — русский интерфейс проверен в GUI: кнопка «Пауза» в composer, полоса
+  «Приостановлено · Enter или клик — продолжить».
 - `market/index.json` проходит `tools/validate-index.mjs` (правила формата 1).
 
 ## Лицензия
 
-MIT — см. `LICENSE` в каждом пакете.
+MIT — см. `LICENSE` в каждом пакете. `pause-ru` сохраняет copyright апстрима
+(`better-er/dsh-pause`) и содержит `NOTICE` с перечнем изменений.

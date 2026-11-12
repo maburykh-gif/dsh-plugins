@@ -1,0 +1,8 @@
+# Русский форк dsh-pause: bundle-патч, который вставляет плагин в профиль.
+# Срабатывает, когда пакет указан в dsh.profile.bundles профиля.
+# Хостовая половина закрывает ворота на agent/pre-step, браузерная рисует
+# полосу паузы внутри composer.
+
+- insert:
+    - id: pause-ru
+      name: '@dsh-plugins/pause-ru'
